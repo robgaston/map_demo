@@ -15,7 +15,8 @@
         "webpack-serve": "^2.0.2"
     },
     "scripts": {
-        "build": "webpack && git add . && git commit -a -m 'deploying latest...' && git push",
+        "build": "webpack",
+        "deploy": "webpack && git add docs && git commit -a -m 'deploying latest...' && git push",
         "dev": "webpack-serve"
     },
     "dependencies": {

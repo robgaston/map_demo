@@ -25,10 +25,16 @@ The application should now be running at http://localhost:8080/
 
 Changes that you make to javascript and CSS files will be automatically refreshed!
 
-## Deployment
+## Building
 Before deploying, you must first build the website by running the following command from the root directory: 
 ```
 yarn run build
 ```
 
-To deploy your latest code to the web, simply push commits to the `master` branch.
+## Deployment
+To deploy your latest code to the web, simply build (as per above) then commit and push your local changes to the `master` branch in Github.
+
+Alternatively, you can run the following command (which does the same as above):
+```
+yarn run deploy
+```

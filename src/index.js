@@ -6,5 +6,5 @@ import * as token from './token'
 mapboxgl.accessToken = token;
 let map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9'
+    style: 'mapbox://styles/mapbox/satellite-v9'
 });
