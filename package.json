@@ -15,7 +15,10 @@
         "webpack-serve": "^2.0.2"
     },
     "scripts": {
-        "build": "webpack",
+        "build": "webpack && git add . && git commit -a -m 'deploying latest...' && git push",
         "dev": "webpack-serve"
+    },
+    "dependencies": {
+        "mapbox-gl": "^0.47.0"
     }
 }
