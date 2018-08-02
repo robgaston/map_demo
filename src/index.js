@@ -1,41 +1,41 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles.css';
-import './token';
 import * as mapboxgl from 'mapbox-gl';
-import style from './styles/mapbox_streets_v8.json';
-import places from './data/la_historic_places.json';
-import neighborhoods from './data/la-county-neighborhoods-v6.json';
+import neighborhoods from '../data/la-county-neighborhoods-v6-agg.json';
+mapboxgl.accessToken = 'pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg';
 
-style.sources = Object.assign(style.sources, {
-    'places': {
-        'type': 'geojson',
-        'data': places
-    },
-    'neighborhoods': {
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/rgaston/cjkd7pcl1ccdp2stf8742ykxl',
+    center: [-118.4, 34],
+    zoom: 9.5,
+    pitch: 60
+});
+
+map.on('load', () => {
+    map.addSource('neighborhoods', {
         'type': 'geojson',
         'data': neighborhoods
-    }
-});
-
-style.layers.push({
-    'id': 'places',
-    'type': 'heatmap',
-    'source': 'places'
-}, {
-    'id': 'neighborhoods',
-    'type': 'fill',
-    'source': 'neighborhoods',
-    'layout': {},
-    'paint': {
-        'fill-color': '#088',
-        'fill-opacity': 0.1,
-        'fill-outline-color': 'black'
-    }
-});
-
-new mapboxgl.Map({
-    container: 'map',
-    style: style,
-    center: [-118.5, 34],
-    zoom: 9
+    });
+    map.addLayer({
+        'id': 'neighborhoods',
+        'type': 'fill-extrusion',
+        'source': 'neighborhoods',
+        'layout': {},
+        'paint': {
+            'fill-extrusion-color': '#53a682',
+            'fill-extrusion-height': ['get', 'count'],
+            'fill-extrusion-opacity': 0.7
+        },
+        "filter": ["!=", "count", 0]
+    });
+    map.addLayer({
+        'id': 'neighborhoods-outline',
+        'type': 'line',
+        'source': 'neighborhoods',
+        "filter": ["!=", "count", 0],
+        'paint': {
+            'line-color': '#00e281',
+        }
+    });
 });

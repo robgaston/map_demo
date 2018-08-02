@@ -20,6 +20,7 @@
         "dev": "webpack-serve"
     },
     "dependencies": {
-        "mapbox-gl": "^0.47.0"
+        "mapbox-gl": "^0.47.0",
+        "turf-aggregate": "^3.0.1"
     }
 }
