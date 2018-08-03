@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
     style: 'mapbox://styles/rgaston/cjkd7pcl1ccdp2stf8742ykxl',
     center: [-118.4, 34],
     zoom: 9.5,
-    pitch: 60
+    pitch: 10
 });
 
 map.on('load', () => {
