@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: sans-serif;
 }
 
 main {
@@ -8,8 +9,22 @@ main {
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 10;
 }
 
 #map {
     height: 100%;
+}
+
+#popup {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 10000;
+    background-color: rgba(127, 207, 172, 0.78);
+    color: #012d1a;
+    border-color: #012d1a;
+    border-radius: 3px;
+    padding: 0 25px 25px;
+    display: none;
 }

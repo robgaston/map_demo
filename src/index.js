@@ -13,6 +13,9 @@ const map = new mapboxgl.Map({
 });
 
 map.on('load', () => {
+    neighborhoods.features.forEach((f, i) => {
+        f.id = i;
+    });
     map.addSource('neighborhoods', {
         'type': 'geojson',
         'data': neighborhoods
@@ -23,9 +26,11 @@ map.on('load', () => {
         'source': 'neighborhoods',
         'layout': {},
         'paint': {
-            'fill-extrusion-color': '#53a682',
             'fill-extrusion-height': ['get', 'count'],
-            'fill-extrusion-opacity': 0.7
+            'fill-extrusion-color': ["case", ["boolean", ["feature-state", "hover"], false],
+                '#097a49',
+                '#53a682'
+            ]
         },
         "filter": ["!=", "count", 0]
     });
@@ -35,7 +40,50 @@ map.on('load', () => {
         'source': 'neighborhoods',
         "filter": ["!=", "count", 0],
         'paint': {
-            'line-color': '#00e281',
+            'line-color': ["case", ["boolean", ["feature-state", "hover"], false],
+                '#009153',
+                '#00e281'
+            ]
         }
+    });
+
+    let hoveredStateId =  null;
+    let popup = document.querySelector('#popup');
+    let countyNameEl = document.querySelector('#popup .county-name');
+    let countEl = document.querySelector('#popup .count');
+    map.on("mousemove", "neighborhoods", function(e) {
+        if (e.features.length > 0) {
+            if (hoveredStateId) {
+                map.setFeatureState({
+                    source: 'neighborhoods',
+                    id: hoveredStateId
+                }, {
+                    hover: false
+                });
+            }
+            hoveredStateId = e.features[0].id;
+            map.setFeatureState({
+                source: 'neighborhoods',
+                id: hoveredStateId
+            }, {
+                hover: true
+            });
+            popup.style.display = "block";
+            countyNameEl.innerHTML = e.features[0].properties.name;
+            countEl.innerHTML = (e.features[0].properties.count/10);
+        }
+    });
+
+    map.on("mouseleave", "neighborhoods", function() {
+        if (hoveredStateId) {
+            map.setFeatureState({
+                source: 'neighborhoods',
+                id: hoveredStateId
+            }, {
+                hover: false
+            });
+        }
+        popup.style.display = "none";
+        hoveredStateId = null;
     });
 });
