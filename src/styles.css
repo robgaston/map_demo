@@ -20,11 +20,33 @@ main {
     position: fixed;
     top: 25px;
     right: 25px;
-    z-index: 10000;
-    background-color: rgba(127, 207, 172, 0.78);
-    color: #012d1a;
-    border-color: #012d1a;
+    z-index: 100;
+    background-color: rgba(193, 193, 193, 0.78);
+    color: #1f1f1f;
+    border-color: #1f1f1f;
     border-radius: 3px;
     padding: 0 25px 25px;
     display: none;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    color: rgb(196, 196, 196);
+    padding: 10px;
+}
+
+a {
+    color: rgb(196, 196, 196);
+}
+
+.title {
+    font-size: 2em;
+}
+
+.subtitle {
+    font-size: 1em;
 }

@@ -1,24 +1,37 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles.css';
 import * as mapboxgl from 'mapbox-gl';
-import neighborhoods from '../data/la-county-neighborhoods-v6-agg.json';
 mapboxgl.accessToken = 'pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg';
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/rgaston/cjkd7pcl1ccdp2stf8742ykxl',
+    style: 'mapbox://styles/rgaston/cjkehnc142gdu2sqwcjzu8ymz',
     center: [-118.4, 34],
     zoom: 9.5,
     pitch: 10
 });
 
-map.on('load', () => {
+map.on('load', async function () {
+    let neighborhoods = await import('../data/la-county-neighborhoods-v6-agg.json');
     neighborhoods.features.forEach((f, i) => {
         f.id = i;
     });
     map.addSource('neighborhoods', {
         'type': 'geojson',
         'data': neighborhoods
+    });
+    map.addLayer({
+        'id': 'neighborhoods-outline',
+        'type': 'line',
+        'source': 'neighborhoods',
+        "filter": ["!=", "count", 0],
+        'paint': {
+            'line-color': ["case", ["boolean", ["feature-state", "hover"], false],
+                '#626262',
+                'rgb(193, 193, 193)'
+            ],
+            'line-width': 1
+        }
     });
     map.addLayer({
         'id': 'neighborhoods',
@@ -28,23 +41,12 @@ map.on('load', () => {
         'paint': {
             'fill-extrusion-height': ['get', 'count'],
             'fill-extrusion-color': ["case", ["boolean", ["feature-state", "hover"], false],
-                '#097a49',
-                '#53a682'
-            ]
+                '#626262',
+                'rgb(193, 193, 193)'
+            ],
+            'fill-extrusion-opacity': 0.3
         },
         "filter": ["!=", "count", 0]
-    });
-    map.addLayer({
-        'id': 'neighborhoods-outline',
-        'type': 'line',
-        'source': 'neighborhoods',
-        "filter": ["!=", "count", 0],
-        'paint': {
-            'line-color': ["case", ["boolean", ["feature-state", "hover"], false],
-                '#009153',
-                '#00e281'
-            ]
-        }
     });
 
     let hoveredStateId =  null;
