@@ -27,6 +27,7 @@ main {
     border-radius: 3px;
     padding: 0 25px 25px;
     display: none;
+    max-width: 300px;
 }
 
 header {
