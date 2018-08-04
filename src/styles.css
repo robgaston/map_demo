@@ -33,7 +33,7 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 300px;
     z-index: 100;
     color: rgb(196, 196, 196);
     padding: 10px;
