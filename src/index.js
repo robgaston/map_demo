@@ -13,7 +13,7 @@ mapboxgl.accessToken = settings.accessToken;
 async function init(e) {
     const map = e.target;
     const custom = await import ('./custom-style.json');
-    const neighborhoods = await import ('../data/collected.json');
+    const neighborhoods = await import ('../data/output.json');
     let style = map.getStyle();
 
     custom.sources.neighborhoods.data = neighborhoods;

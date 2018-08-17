@@ -1,7 +1,7 @@
 import fs from 'fs';
 import turf from '@turf/turf';
-import neighborhoods from './data/neighborhoods.json';
-import sites from './data/sites.json';
+import neighborhoods from '../data/neighborhoods.json';
+import sites from '../data/sites.json';
 
 sites.features.forEach(function(feature) {
     feature.properties = {
@@ -19,7 +19,7 @@ collected.features = collected.features.filter(function(feature, i) {
 
 collected = JSON.stringify(collected, null, '\t');
 
-fs.writeFile('./data/collected.json', collected, function(err) {
+fs.writeFile('../data/output.json', collected, function(err) {
     if (err) throw err;
 
     console.log('done.');

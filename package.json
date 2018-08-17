@@ -18,8 +18,8 @@
     "scripts": {
         "build": "webpack",
         "deploy": "webpack && git add docs && git commit -a -m 'deploying latest...' && git push",
-        "dev": "webpack-serve",
-        "collect": "node --experimental-modules collect.mjs"
+        "serve": "webpack-serve",
+        "process": "cd src && node --experimental-modules process.mjs"
     },
     "dependencies": {
         "mapbox-gl": "^0.48.0"
