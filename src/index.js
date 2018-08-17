@@ -1,5 +1,5 @@
-import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import * as mapboxgl from 'mapbox-gl';
 import settings from './settings.json';
 
