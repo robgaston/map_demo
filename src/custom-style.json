@@ -9,6 +9,22 @@
         }
     },
     "layers": [{
+        "id": "neighborhoods-outline",
+        "type": "line",
+        "source": "neighborhoods",
+        "paint": {
+            "line-color": [
+                "case", ["boolean", ["feature-state", "hover"], false],
+                "#383838",
+                "rgb(193, 193, 193)"
+            ],
+            "line-width":  [
+                "case", ["boolean", ["feature-state", "hover"], false],
+                3,
+                1
+            ]
+        }
+    },{
         "id": "neighborhoods",
         "type": "fill-extrusion",
         "source": "neighborhoods",
@@ -44,22 +60,6 @@
                 ]
             },
             "fill-extrusion-opacity": 0.5
-        }
-    }, {
-        "id": "neighborhoods-outline",
-        "type": "line",
-        "source": "neighborhoods",
-        "paint": {
-            "line-color": [
-                "case", ["boolean", ["feature-state", "hover"], false],
-                "#383838",
-                "rgb(193, 193, 193)"
-            ],
-            "line-width":  [
-                "case", ["boolean", ["feature-state", "hover"], false],
-                3,
-                1
-            ]
         }
     }]
 }
