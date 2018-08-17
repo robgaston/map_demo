@@ -23,12 +23,13 @@ main {
 
 #popup {
     position: fixed;
-    top: 25px;
-    right: 25px;
+    top: 10px;
+    right: 10px;
     z-index: 100;
-    background-color: rgba(193, 193, 193, 0.78);
+    background-color: rgba(193, 193, 193, 0.48);
     color: #1f1f1f;
     border-color: #1f1f1f;
+    border-width: 1px;
     border-radius: 3px;
     padding: 0 25px 25px;
     display: none;
@@ -39,20 +40,23 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    right: 300px;
+    right: 360px;
     z-index: 100;
-    color: rgb(196, 196, 196);
+    color: #1f1f1f;
+    background-color: rgba(193, 193, 193, 0.48);
+    border-radius: 3px;
+    margin: 10px;
     padding: 10px;
 }
 
 a {
-    color: rgb(196, 196, 196);
+    color: #1f1f1f;
 }
 
 .title {
-    font-size: 2em;
+    font-size: 1.6em;
 }
 
 .subtitle {
-    font-size: 1em;
+    font-size: 0.8em;
 }
