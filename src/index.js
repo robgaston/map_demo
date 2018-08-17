@@ -3,12 +3,12 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import * as mapboxgl from 'mapbox-gl';
 import settings from './settings.json';
 
+mapboxgl.accessToken = settings.accessToken;
+
 const popup = document.querySelector('#popup');
 const countyNameEl = document.querySelector('#popup .county-name');
 const countEl = document.querySelector('#popup .count');
 let hoverId = null;
-
-mapboxgl.accessToken = settings.accessToken;
 
 async function init(e) {
     const map = e.target;
@@ -16,14 +16,14 @@ async function init(e) {
     const neighborhoods = await import ('../data/output.json');
     let style = map.getStyle();
 
-    custom.sources.neighborhoods.data = neighborhoods;
-
     style.sources = {
         ...style.sources,
         ...custom.sources
     };
     style.layers.push(...custom.layers);
     map.setStyle(style);
+
+    map.getSource('neighborhoods').setData(neighborhoods);
 
     function clearHover() {
         if (hoverId) {
