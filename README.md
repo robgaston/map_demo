@@ -13,7 +13,7 @@ You'll also want to [sign-up for Mapbox services here](https://www.mapbox.com/si
 
 Now you can fork & clone the repository to start building your own web map.
 
-After cloning the repo, you'll need to insert your Mapbox public access token ([which can be found here](https://www.mapbox.com/account/)) into `src/token.js`.
+After cloning the repo, you'll need to insert your Mapbox public access token ([which can be found here](https://www.mapbox.com/account/)) into `src/settings.json`.
 
 You'll also need to install your package dependencies locally by running the following from the root directory of your cloned repository:
 ```
