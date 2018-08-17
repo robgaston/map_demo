@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Map Demo</title>
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                Cataloged historic sites in Los Angeles by neighborhood
+            </div>
+            <div class="subtitle">
+                (data sources:
+                <a href="http://historicplacesla.org" target="_blank">http://historicplacesla.org</a>,
+                <a href="http://boundaries.latimes.com/" target="_blank">http://boundaries.latimes.com/</a>)
+            </div>
+        </header>
+        <div id="popup" style="display:none;">
+            <h3 class="county-name"></h3>
+            <div>
+                <span class="count"></span>
+                historic site(s) cataloged
+            </div>
+        </div>
+        <main>
+            <div id="map">
+            </div>
+        </main>
+    <script type="text/javascript" src="aggregate-bundle.js"></script></body>
+</html>
