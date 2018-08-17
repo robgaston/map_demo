@@ -31,9 +31,31 @@ main {
     border-color: #1f1f1f;
     border-width: 1px;
     border-radius: 3px;
-    padding: 0 25px 25px;
+    padding: 20px;
     display: none;
     max-width: 300px;
+}
+
+#legend {
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+    z-index: 100;
+    background-color: rgba(221, 221, 221, 0.9);
+    color: #1f1f1f;
+    border-radius: 3px;
+    padding: 20px;
+}
+
+#legend .color {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: solid 1px black;
+}
+
+h4 {
+    margin: 0 0 10px;
 }
 
 header {
@@ -52,8 +74,8 @@ a {
     color: #1f1f1f;
 }
 
-.title {
-    font-size: 1.6em;
+header h3 {
+    margin: 0 0 5px;
 }
 
 .subtitle {
