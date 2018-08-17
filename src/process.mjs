@@ -9,17 +9,17 @@ sites.features.forEach(function(feature) {
     };
 });
 
-let collected = turf.collect(neighborhoods, sites, 'count', 'count');
+let output = turf.collect(neighborhoods, sites, 'count', 'count');
 
-collected.features = collected.features.filter(function(feature, i) {
+output.features = output.features.filter(function(feature, i) {
     feature.id = i;
     feature.properties.count = feature.properties.count.length;
     return feature.properties.count > 0;
 });
 
-collected = JSON.stringify(collected, null, '\t');
+output = JSON.stringify(output, null, '\t');
 
-fs.writeFile('../data/output.json', collected, function(err) {
+fs.writeFile('../data/output.json', output, function(err) {
     if (err) throw err;
 
     console.log('done.');
