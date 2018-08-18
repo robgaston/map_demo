@@ -20,6 +20,7 @@ main {
 #map {
     height: 100%;
 }
+
 #popup, #legend, header {
     position: fixed;
     background-color: rgba(221, 221, 221, 0.9);
@@ -32,9 +33,9 @@ main {
 }
 
 #popup {
+    display: none;
     top: 10px;
     right: 10px;
-    display: none;
     max-width: 300px;
 }
 
@@ -47,10 +48,9 @@ header {
     top: 10px;
     left: 10px;
     margin: 0 370px 0 0;
-    padding: 20px;
 }
 
-#legend .color {
+.color {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -61,12 +61,11 @@ h4 {
     margin: 0 0 10px;
 }
 
-
 a {
     color: #1f1f1f;
 }
 
-header h3 {
+h3 {
     margin: 0 0 5px;
 }
 
