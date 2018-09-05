@@ -17,7 +17,6 @@
     },
     "scripts": {
         "build": "webpack",
-        "deploy": "webpack && git add docs && git commit -a -m 'deploying latest...' && git push",
         "serve": "webpack-serve",
         "process": "cd src && node --experimental-modules process.mjs"
     },

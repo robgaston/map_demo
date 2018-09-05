@@ -6,12 +6,11 @@ Install the following dependencies:
 - [Yarn](https://yarnpkg.com/en/docs/install)
 
 You'll also need a Git client & text editor; if you don't have those, then you should also install the following:
-- [GitHub Desktop](https://desktop.github.com/)
 - [Atom](https://atom.io)
 
 You'll also want to [sign-up for Mapbox services here](https://www.mapbox.com/signup/) and, if you haven't already, [create a GitHub account](https://github.com).
 
-Now you can fork & clone the repository to start building your own web map.
+Now you can fork & clone this repository to start building your own web map.
 
 After cloning the repo, you'll need to insert your Mapbox public access token ([which can be found here](https://www.mapbox.com/account/)) into `src/settings.json`.
 
@@ -38,8 +37,3 @@ yarn run build
 
 ## Deployment
 To deploy your latest code to the web, simply build (as per above) then commit and push your local changes to the `master` branch in Github.
-
-Alternatively, you can run the following command (which does the same as above):
-```
-yarn run deploy
-```
