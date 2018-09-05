@@ -22,5 +22,5 @@ output = JSON.stringify(output, null, "\t");
 fs.writeFile("../data/output.json", output, function(err) {
     if (err) throw err;
 
-    console.log("done.");
+    console.log("success. 👍");
 });
