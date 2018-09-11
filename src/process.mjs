@@ -11,7 +11,7 @@ sites.features.forEach(function(feature) {
 
 let output = turf.collect(neighborhoods, sites, "count", "count");
 
-output.features = output.features.filter(function(feature, i) {
+output.features = output.features.filter((feature, i) => {
     feature.id = i;
     feature.properties.count = feature.properties.count.length;
     return feature.properties.count > 0;
@@ -19,7 +19,7 @@ output.features = output.features.filter(function(feature, i) {
 
 output = JSON.stringify(output, null, "\t");
 
-fs.writeFile("../data/output.json", output, function(err) {
+fs.writeFile("../data/output.json", output, (err) => {
     if (err) throw err;
 
     console.log("success. 👍");
