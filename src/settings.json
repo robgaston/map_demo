@@ -4,5 +4,6 @@
     "style": "mapbox://styles/rgaston/cixkupqlu00462rpdjjb29lrx",
     "center": [-118.4, 34],
     "zoom": 9.5,
-    "pitch": 10
+    "pitch": 10,
+    "customAttribution": "<a href=\"http://historicplacesla.org/about_data\" target=\"_blank\">© HistoricPlacesLA</a>, <a href=\"http://boundaries.latimes.com/about/\" target=\"_blank\">© LA Times</a>"
 }

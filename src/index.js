@@ -5,16 +5,15 @@ import settings from "./settings.json";
 
 mapboxgl.accessToken = settings.accessToken;
 
+let hovered = null;
+const popup = document.querySelector("#popup");
+const map = new mapboxgl.Map(settings);
+map.on("load", init);
+
 async function init(e) {
-    const map = e.target;
-    const popup = document.querySelector("#popup");
-    const countyNameEl = document.querySelector("#popup .county-name");
-    const countEl = document.querySelector("#popup .count");
     const custom = await import("./custom-style.json");
     const neighborhoods = await import("../data/output.json");
-
-    let hoverId = null;
-    let style = map.getStyle();
+    const style = map.getStyle();
 
     style.sources = {
         ...style.sources,
@@ -25,37 +24,54 @@ async function init(e) {
 
     map.getSource("neighborhoods").setData(neighborhoods);
 
-    function clearHover() {
-        if (hoverId) {
-            map.setFeatureState({
-                source: "neighborhoods",
-                id: hoverId
-            }, {
-                hover: false
-            });
-        }
-        popup.style.display = "none";
-        hoverId = null;
-    }
+    initPopup();
+    initLegend();
+}
+
+function initPopup() {
+    const countyName = popup.querySelector(".county-name");
+    const count = popup.querySelector(".count");
 
     map.on("mousemove", "neighborhoods", (e) => {
         clearHover();
         if (e.features.length > 0) {
-            let feature = e.features[0];
-            hoverId = feature.id;
-            map.setFeatureState({
-                source: "neighborhoods",
-                id: hoverId
-            }, {
-                hover: true
-            });
+            hovered = e.features[0];
+            map.setFeatureState(hovered, { hover: true });
             popup.style.display = "block";
-            countyNameEl.innerHTML = feature.properties.name;
-            countEl.innerHTML = feature.properties.count;
+            countyName.innerHTML = hovered.properties.name;
+            count.innerHTML = hovered.properties.count;
         }
     });
 
     map.on("mouseleave", "neighborhoods", clearHover);
 }
 
-new mapboxgl.Map(settings).on("load", init);
+function clearHover() {
+    if (hovered) {
+        map.setFeatureState(hovered, { hover: false });
+    }
+    popup.style.display = "none";
+    hovered = null;
+}
+
+function initLegend() {
+    const legend = document.querySelector("#legend");
+    const template = document.querySelector("#legend-entry");
+    const colors = map.getPaintProperty(
+        'neighborhoods',
+        'fill-extrusion-color'
+    ).stops;
+
+    colors.forEach((color, i) => {
+        const entry = document.importNode(template.content, true);
+        const spans = entry.querySelectorAll("span");
+        spans[0].style.backgroundColor = color[1];
+        if (colors.length === i+1) {
+            spans[1].textContent = `>=${color[0]}`;
+        } else {
+            spans[1].textContent = `${color[0]}-${colors[i+1][0]-1}`;
+        }
+        legend.appendChild(entry)
+    });
+    legend.style.display = "block";
+}
