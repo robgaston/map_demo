@@ -3,14 +3,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import * as mapboxgl from "mapbox-gl";
 import settings from "./settings.json";
 
-mapboxgl.accessToken = settings.accessToken;
-
-let hovered = null;
 const popup = document.querySelector("#popup");
-const map = new mapboxgl.Map(settings);
-map.on("load", init);
+let map;
+let hovered;
 
-async function init(e) {
+async function init() {
     const custom = await import("./custom-style.json");
     const neighborhoods = await import("../data/output.json");
     const style = map.getStyle();
@@ -58,8 +55,8 @@ function initLegend() {
     const legend = document.querySelector("#legend");
     const template = document.querySelector("#legend-entry");
     const colors = map.getPaintProperty(
-        'neighborhoods',
-        'fill-extrusion-color'
+        "neighborhoods",
+        "fill-extrusion-color"
     ).stops;
 
     colors.forEach((color, i) => {
@@ -75,3 +72,7 @@ function initLegend() {
     });
     legend.style.display = "block";
 }
+
+mapboxgl.accessToken = settings.accessToken;
+map = new mapboxgl.Map(settings);
+map.on("load", init);
