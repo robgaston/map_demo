@@ -4,8 +4,8 @@ import * as mapboxgl from "mapbox-gl";
 import settings from "./settings.json";
 
 const popup = document.querySelector("#popup");
-let map;
 let hovered;
+let map;
 
 async function init() {
     const custom = await import("./custom-style.json");
