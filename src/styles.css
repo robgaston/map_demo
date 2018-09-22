@@ -13,7 +13,7 @@ main {
     z-index: 10;
 }
 
-.loading, .loading:after {
+.loading {
     display: none;
 }
 
@@ -26,8 +26,8 @@ main {
     background-color: rgba(221, 221, 221, 0.9);
     color: #1f1f1f;
     border: solid #636363 1px;
-    border-radius: 3px;
-    padding: 20px;
+    border-radius: 5px;
+    padding: 15px;
     z-index: 100;
     box-shadow: -2px -2px 2px 1px rgba(139, 139, 139, 0.2);
 }
@@ -40,6 +40,7 @@ main {
 }
 
 #legend {
+    display: none;
     bottom: 30px;
     right: 10px;
 }
@@ -50,7 +51,7 @@ header {
     margin: 0 370px 0 0;
 }
 
-header div:first-child {
+.title {
     padding-bottom: 5px;
     font-size: 1.2em;
     font-weight: bold;
