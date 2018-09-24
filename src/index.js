@@ -35,8 +35,8 @@ function initPopup() {
             hovered = e.features[0];
             map.setFeatureState(hovered, { hover: true });
             popup.style.display = "block";
-            countyName.innerHTML = hovered.properties.name;
-            count.innerHTML = hovered.properties.count;
+            countyName.textContent = hovered.properties.name;
+            count.textContent = hovered.properties.count;
         }
     });
 
